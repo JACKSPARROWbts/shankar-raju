@@ -10,19 +10,19 @@ import Experience from "./Experience";
 import Projects from "./Projects";
 
 function WhatIUse() {
-  const skillsRef1 = useRef(null);
-  const triggerRef = useRef(null);
-  const skillsRef2 = useRef(null);
+  const skillsRef1 = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const skillsRef2 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, Draggable);
-
+    
     function getScrollAmountForSkillsRef1() {
-      let racesWidth = skillsRef1.current.scrollWidth;
+      let racesWidth = skillsRef1.current!.scrollWidth;
       return -(racesWidth - window.innerWidth);
     }
     function getScrollAmountForSkillsRef2() {
-      let racesWidth = skillsRef2.current.scrollWidth;
+      let racesWidth = skillsRef2.current!.scrollWidth;
       return -(racesWidth - window.innerWidth);
     }
 
@@ -39,14 +39,13 @@ function WhatIUse() {
           trigger: triggerRef.current,
           markers: false,
           invalidateOnRefresh: true,
-          start: "top 12%",
+          start: "top 20%",
           end: () => `+=${getScrollAmountForSkillsRef1() * -1}`,
           scrub: 0.6,
           pin: true,
         },
       }
     );
-    let horizontalScroll = ScrollTrigger.create({});
     const leftToRight = gsap.fromTo(
       skillsRef2.current,
       {
@@ -60,7 +59,7 @@ function WhatIUse() {
           trigger: triggerRef.current,
           markers: false,
           invalidateOnRefresh: true,
-          start: "top 11%",
+          start: "top 19%",
           end: () => `+=${getScrollAmountForSkillsRef2() * -1}`,
           scrub: 0.6,
           pin: true,
@@ -74,8 +73,8 @@ function WhatIUse() {
       bounds: {
         minX: 0,
         maxX: -(
-          (skillsRef1.current.offsetWidth -
-            skillsRef1.current.parentElement.offsetWidth) *
+          (skillsRef1.current!.offsetWidth -
+            skillsRef1.current!.parentElement!.offsetWidth) *
           1.5
         ), // Set bounds based on container width and content width
       },
@@ -87,8 +86,8 @@ function WhatIUse() {
       bounds: {
         minX: 0,
         maxX: -(
-          (skillsRef2.current.offsetWidth -
-            skillsRef2.current.parentElement.offsetWidth) *
+          (skillsRef2.current!.offsetWidth -
+            skillsRef2.current!.parentElement!.offsetWidth) *
           1.5
         ), // Set bounds based on container width and content width
       },
@@ -96,12 +95,16 @@ function WhatIUse() {
     });
     // Function to update position dynamically during drag
     function updatePosition1() {
+     if(skillsRef1.current!==null){
       skillsRef1.current.style.left =
         gsap.getProperty(skillsRef1.current, "x") + "px";
+     }
     }
     function updatePosition2() {
-      skillsRef2.current.style.left =
+      if(skillsRef2.current!==null){
+        skillsRef2.current.style.left =
         gsap.getProperty(skillsRef2.current, "x") + "px";
+      }
     }
 
     // Cleanup function
