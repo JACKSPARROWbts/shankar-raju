@@ -2,7 +2,7 @@
 
 import Bounded from '@/components/Bounded'
 import React from 'react'
-import { useRouter ,useParams} from 'next/navigation'
+import { useParams} from 'next/navigation'
 import Vuram from './Vuram';
 import Naaniz from './Naaniz';
 import Hawkdigital from './Hawkdigital';
