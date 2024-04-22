@@ -1,5 +1,6 @@
+"use client"
 
-import React, { Suspense} from 'react'
+import React, { Suspense } from 'react'
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import Model from "./Model"
@@ -11,6 +12,8 @@ type AvatarProps={
 
 function Avatar({className}:AvatarProps) {
  
+
+
   return (
     <div className={className} style={{height:500}}>
         <Canvas
