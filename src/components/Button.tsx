@@ -15,7 +15,7 @@ export default function Button({
   className,
 }: ButtonProps) {
   return (
-    <div className="flex space-x-3  gap-2 ml-16">
+    <div className="buttonGroup flex space-x-3  gap-2">
       <a href="https://drive.google.com/file/d/18NVWNuNUUn5Kt9GYpsZ3JTgOgxtMzdxU/view?usp=sharing" target="_blank"
       className={clsx(
         "group relative flex w-fit text-slate-800 items-center justify-center overflow-hidden rounded-md border-2 border-slate-900 bg-slate-50 px-4 py-2 font-bold transition-transform ease-out hover:scale-105",
